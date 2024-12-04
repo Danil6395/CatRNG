@@ -1,0 +1,95 @@
+/* Общий стиль страницы */
+@font-face {
+    font-family: 'Lilita One';
+    src: url('assets/LilitaOne.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Lilita One', cursive;
+    background: url('assets/fon.png') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Контейнер */
+.container {
+    top: 5%; /* Центрируем таймер по вертикали относительно иконки */
+    left: 0%; /* Центрируем таймер по горизонтали */
+    position: relative;
+}
+
+/* Иконка котика */
+.cat-icon {
+    width: 500px;
+    height: 500px;
+}
+
+/* Таймер */
+.timer {
+    position: absolute;
+    top: 90%; /* Центрируем таймер по вертикали относительно иконки */
+    left: 50%; /* Центрируем таймер по горизонтали */
+    transform: translate(-50%, -50%);
+    font-size: 10rem;
+    color: transparent;
+    text-align: center;
+    padding: 10px;
+    -webkit-text-stroke: 30px transparent; /* Начальный стиль для обводки */
+    background: linear-gradient(to bottom, #A3BDD6, #7481A6); /* Градиент */
+    -webkit-background-clip: text; /* Градиент внутри текста */
+    -webkit-text-fill-color: white; /* Белая внутренняя заливка */
+}
+
+/* Текст Soon... */
+.soon-text {
+    position: absolute;
+    top: -35%; /* Центрируем таймер по вертикали относительно иконки */
+    left: 50%; /* Центрируем таймер по горизонтали */
+    transform: translate(-50%, -50%);
+    font-family: 'Lilita One', cursive;
+    font-size: 5rem;
+    color: #D7FFAA;
+    -webkit-text-stroke: 5px #A8D487; /* Обводка текста */
+    text-align: top;
+    margin-bottom: 10px;
+}
+
+#cube-rain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    overflow: hidden;
+    pointer-events: none; /* Чтобы не мешать взаимодействию с другими элементами */
+    z-index: 1;
+}
+
+.cube {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    animation: fall linear;
+    pointer-events: none;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
