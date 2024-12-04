@@ -21,7 +21,8 @@ body {
 
 /* Контейнер */
 .container {
-    text-align: center;
+    top: 5%; /* Центрируем таймер по вертикали относительно иконки */
+    left: 0%; /* Центрируем таймер по горизонтали */
     position: relative;
 }
 
@@ -34,55 +35,57 @@ body {
 /* Таймер */
 .timer {
     position: absolute;
-    top: 75%; /* Расположение таймера под иконкой */
-    left: 50%;
+    top: 90%; /* Центрируем таймер по вертикали относительно иконки */
+    left: 50%; /* Центрируем таймер по горизонтали */
     transform: translate(-50%, -50%);
-    font-size: 4rem; /* Подстраиваем размер */
+    font-size: 10rem;
     color: transparent;
     text-align: center;
-    -webkit-text-stroke: 3px transparent; /* Начальный стиль для обводки */
+    padding: 10px;
+    -webkit-text-stroke: 30px transparent; /* Начальный стиль для обводки */
     background: linear-gradient(to bottom, #A3BDD6, #7481A6); /* Градиент */
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: white;
-    text-shadow: 1px 1px 0px #A3BDD6, -1px -1px 0px #7481A6;
+    -webkit-background-clip: text; /* Градиент внутри текста */
+    -webkit-text-fill-color: white; /* Белая внутренняя заливка */
 }
 
 /* Текст Soon... */
 .soon-text {
     position: absolute;
-    top: 5%; /* Расположение текста сверху */
-    left: 50%;
+    top: -35%; /* Центрируем таймер по вертикали относительно иконки */
+    left: 50%; /* Центрируем таймер по горизонтали */
     transform: translate(-50%, -50%);
-    font-size: 3rem;
-    color: #9BDD46;
-    -webkit-text-stroke: 2px #27843D;
-    text-align: center;
+    font-family: 'Lilita One', cursive;
+    font-size: 5rem;
+    color: #D7FFAA;
+    -webkit-text-stroke: 5px #A8D487; /* Обводка текста */
+    text-align: top;
+    margin-bottom: 10px;
 }
 
-/* Дождь кубиков */
 #cube-rain {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 200%;
+    height: 200%;
     overflow: hidden;
+    pointer-events: none; /* Чтобы не мешать взаимодействию с другими элементами */
     z-index: 1;
-    pointer-events: none;
 }
 
 .cube {
     position: absolute;
-    width: 50px;
-    height: 50px;
+    width: 100px;
+    height: 100px;
     background-size: contain;
     background-repeat: no-repeat;
-    animation: fall linear infinite;
+    animation: fall linear;
+    pointer-events: none;
 }
 
 @keyframes fall {
     0% {
-        transform: translateY(-50px) rotate(0deg);
+        transform: translateY(-100px) rotate(0deg);
         opacity: 1;
     }
     100% {
