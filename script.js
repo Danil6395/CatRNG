@@ -1,8 +1,42 @@
+const meteorContainer = document.getElementById("meteor-rain");
+
+// Функция для создания монеты
+function createMeteor() {
+    const meteor = document.createElement("div");
+    meteor.classList.add("meteor");
+
+    // Устанавливаем начальную позицию монеты (верхний правый угол экрана)
+    meteor.style.top = `${Math.random() * window.innerHeight * 3}px`; // Случайная высота на 20% экрана сверху
+    meteor.style.left = `${window.innerWidth + 100}px`; // За пределами экрана справа
+
+    // Устанавливаем случайный размер монеты
+    const size = Math.random() * 50 + 70; // Размер от 30px до 50px
+    meteor.style.width = `${size}px`;
+    meteor.style.height = `${size}px`;
+
+    // Устанавливаем случайную продолжительность падения
+    const duration = Math.random() * 2 + 2; // От 2 до 4 секунд
+    meteor.style.animationDuration = `${duration}s`;
+
+    // Добавляем монету в контейнер
+    meteorContainer.appendChild(meteor);
+
+    // Удаляем монету после завершения анимации
+    meteor.addEventListener("animationend", () => {
+        meteor.remove();
+    });
+}
+
+// Запускаем генерацию монет каждые 200 миллисекунд
+setInterval(createMeteor, 500);
+
+
+
 const cubeRainContainer = document.getElementById("cube-rain");
 
-// Массив ссылок на изображения кубиков
 const cubeImages = [
-    "assets/cube.png",
+    "assets/cuberain.png",
+    "assets/cloverrain.png",
 ];
 
 function createFallingCube() {
@@ -14,24 +48,20 @@ function createFallingCube() {
     cube.style.backgroundImage = `url(${randomImage})`;
 
     // Устанавливаем случайное начальное положение
-    const randomLeft = Math.random() * 100;
+    const randomLeft = Math.random() * 100; // Процент от ширины экрана
     cube.style.left = `${randomLeft}vw`;
 
-    // Устанавливаем случайную продолжительность анимации
+    // Продолжительность падения
     const randomDuration = Math.random() * 3 + 2; // От 2 до 5 секунд
     cube.style.animationDuration = `${randomDuration}s`;
 
-    // Добавляем кубик в контейнер
+    // Добавляем и удаляем кубик
     cubeRainContainer.appendChild(cube);
-
-    // Удаляем кубик после завершения анимации
-    cube.addEventListener("animationend", () => {
-        cube.remove();
-    });
+    cube.addEventListener("animationend", () => cube.remove());
 }
 
-// Запускаем "дождь" кубиков с интервалом
-setInterval(createFallingCube, 1500);
+// Генерация кубиков
+setInterval(createFallingCube, 750);
 
 
 // Установите конечное время (например, через 1 час от текущего момента)
