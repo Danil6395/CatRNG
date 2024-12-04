@@ -24,25 +24,30 @@ body {
     top: 5%; /* Центрируем таймер по вертикали относительно иконки */
     left: 0%; /* Центрируем таймер по горизонтали */
     position: relative;
+    text-align: center;
+    width: 100%;
+    height: auto;
 }
 
 /* Иконка котика */
 .cat-icon {
-    width: 500px;
-    height: 500px;
+    width: 30vw; /* Зависит от ширины окна */
+    max-width: 500px; /* Максимальный размер для небольших экранов */
+    height: auto; /* Сохраняем пропорции */
+    margin: 0 auto;
 }
 
 /* Таймер */
 .timer {
     position: absolute;
-    top: 90%; /* Центрируем таймер по вертикали относительно иконки */
-    left: 50%; /* Центрируем таймер по горизонтали */
+    top: 90%; /* Располагаем под иконкой */
+    left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 10rem;
+    font-size: calc(7vw + 30px); /* Размер зависит от ширины окна */
     color: transparent;
     text-align: center;
     padding: 10px;
-    -webkit-text-stroke: 30px transparent; /* Начальный стиль для обводки */
+    -webkit-text-stroke: calc(0.1em + 15px) transparent; /* Начальный стиль для обводки */
     background: linear-gradient(to bottom, #A3BDD6, #7481A6); /* Градиент */
     -webkit-background-clip: text; /* Градиент внутри текста */
     -webkit-text-fill-color: white; /* Белая внутренняя заливка */
@@ -51,38 +56,39 @@ body {
 /* Текст Soon... */
 .soon-text {
     position: absolute;
-    top: -35%; /* Центрируем таймер по вертикали относительно иконки */
-    left: 50%; /* Центрируем таймер по горизонтали */
+    top: -30%; /* Располагаем над иконкой */
+    left: 50%;
     transform: translate(-50%, -50%);
-    font-family: 'Lilita One', cursive;
-    font-size: 5rem;
+    font-size: calc(3vw + 20px); /* Зависит от ширины окна */
     color: #D7FFAA;
-    -webkit-text-stroke: 5px #A8D487; /* Обводка текста */
-    text-align: top;
+    -webkit-text-stroke: calc(0.05em + 1px) #A8D487; /* Обводка текста */
+    text-align: center;
     margin-bottom: 10px;
 }
 
+/* Дождь кубиков */
 #cube-rain {
     position: fixed;
     top: 0;
     left: 0;
-    width: 200%;
-    height: 200%;
+    width: 100%; /* Растягиваем по ширине окна */
+    height: 100%; /* Растягиваем по высоте окна */
     overflow: hidden;
-    pointer-events: none; /* Чтобы не мешать взаимодействию с другими элементами */
+    pointer-events: none;
     z-index: 1;
 }
 
 .cube {
     position: absolute;
-    width: 100px;
-    height: 100px;
+    width: calc(5vw + 10px); /* Адаптируемый размер */
+    height: calc(5vw + 10px);
     background-size: contain;
     background-repeat: no-repeat;
     animation: fall linear;
     pointer-events: none;
 }
 
+/* Анимация падения кубиков */
 @keyframes fall {
     0% {
         transform: translateY(-100px) rotate(0deg);
@@ -91,5 +97,25 @@ body {
     100% {
         transform: translateY(100vh) rotate(360deg);
         opacity: 0;
+    }
+}
+
+/* Медиазапросы для маленьких экранов */
+@media (max-width: 600px) {
+    .cat-icon {
+        width: 75vw; /* Увеличиваем размер на маленьких экранах */
+    }
+
+    .timer {
+        font-size: calc(15vw + 0px);
+    }
+
+    .soon-text {
+        font-size: calc(10vw + 8px);
+    }
+
+    .cube {
+        width: calc(15vw); /* Кубики тоже масштабируем */
+        height: calc(15vw);
     }
 }
