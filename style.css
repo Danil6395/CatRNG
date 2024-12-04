@@ -10,7 +10,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Lilita One', cursive;
-    background: url('assets/fon.png') no-repeat center center fixed;
+    background: url('assets/background.png') no-repeat center center fixed;
     background-size: cover;
     display: flex;
     justify-content: center;
@@ -29,12 +29,13 @@ body {
     height: auto;
 }
 
-/* Иконка котика */
 .cat-icon {
-    width: 30vw; /* Зависит от ширины окна */
-    max-width: 500px; /* Максимальный размер для небольших экранов */
-    height: auto; /* Сохраняем пропорции */
-    margin: 0 auto;
+    max-width: 100%;
+    height: auto; /* Сохраняем пропорции гифки */
+    width: 500px; /* Или используем фиксированную ширину, если нужно */
+    display: block;
+    margin: 0 auto; /* Центрируем по горизонтали */
+    position: relative;
 }
 
 /* Таймер */
@@ -84,12 +85,12 @@ body {
     height: calc(5vw + 10px);
     background-size: contain;
     background-repeat: no-repeat;
-    animation: fall linear;
+    animation: fall-cubes linear;
     pointer-events: none;
 }
 
 /* Анимация падения кубиков */
-@keyframes fall {
+@keyframes fall-cubes {
     0% {
         transform: translateY(-100px) rotate(0deg);
         opacity: 1;
@@ -119,3 +120,37 @@ body {
         height: calc(15vw);
     }
 }
+
+/* Контейнер для метеоритов */
+#meteor-rain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0; /* За другими элементами */
+}
+
+/* Метеориты (монеты) */
+.meteor {
+    position: absolute;
+    background-image: url('assets/coinrain.png'); /* Убедитесь, что путь правильный */
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.5; /* Полупрозрачность */
+    animation: fall linear;
+}
+
+/* Анимация падения по диагонали */
+@keyframes fall {
+    0% {
+        transform: translate(0, -200vh); /* Начальная точка: верхний правый угол */
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-200vw, 200vh); /* Конечная точка: нижний левый угол */
+        opacity: 0.5; /* Полупрозрачность остаётся */
+    }
+}
+
